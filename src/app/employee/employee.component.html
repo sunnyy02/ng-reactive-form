@@ -6,11 +6,15 @@
   </label>
   <label>
     Last Name:
-    <input type="text" [formControl]="bioSection.controls.lastName">
+    <input type="text" formControlName="lastName">
   </label>
   <label>
     Age:
     <input type="number" [formControl]="bioSection.controls.age">
+  </label>
+  <label>
+    license Number:
+    <input type="text" formControlName="licenseNumber">
   </label>
   <!-- The disabled attribute controls prevents submission if the form is not valid -->
   <button type="submit" [disabled]="!bioSection.valid">Submit Application</button> 
@@ -29,7 +33,9 @@
         }
         @if (bioSection.controls.age.errors?.['min'] ?? bioSection.controls.age.errors?.['required']){
           <li>You must be over 18 to sign up</li>
-
+        }
+          @if (bioSection.controls.age.errors?.['required'] ?? bioSection.controls.licenseNumber.errors?.['required']){
+            <li>You must be provide license number</li>
         }
       </ol>
     </div>
